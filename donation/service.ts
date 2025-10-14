@@ -1,12 +1,12 @@
-import { basicCrudService } from "@core/express/service/common";
-import { captureOrder, createOrder } from "@core/paypal";
-import { render } from "@core/render";
-import { Order } from "@store/order/service";
-import { User } from "@uac/user/service";
-import { IDonation, NewDonation } from "src/donation-products-plugin-shared/donation/types";
+import { IDonation } from "src/donation-products-plugin-shared/donation/types";
+import { Setting } from "../../common/setting/service";
+import { basicCrudService } from "../../core/express/service/common";
+import { captureOrder, createOrder } from "../../core/paypal";
+import { render } from "../../core/render";
+import { sendEmail } from "../../core/sendEmail";
+import { Order } from "../../store/order/service";
+import { User } from "../../uac/user/service";
 import { DonationConfirmation } from "../components/donationConfirmation";
-import { Setting } from "@common/setting/service";
-import { sendEmail } from "@core/sendEmail";
 
 export const Donation = {
     ...basicCrudService<IDonation>("donations", "id"),
@@ -30,7 +30,7 @@ export const Donation = {
             transactionId: payPalResult?.jsonResponse?.id || "",
             createdAt: new Date().toISOString(),
         });
-        
+
         return newDonation;
     },
     finalize: async (transactionId: string):Promise<IDonation> => {

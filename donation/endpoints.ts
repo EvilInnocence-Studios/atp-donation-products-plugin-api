@@ -1,19 +1,20 @@
+import { del, get, patch, post, upload } from "../../core/express/wrappers";
 import { DonationHandler } from "./handlers";
 
 export const donationEndpoints = {
     user: {
         ":userId": {
             donation: {
-                GET: DonationHandler.search,
+                GET: get(DonationHandler.search),
                 ":donationId": {
-                    GET: DonationHandler.get,
-                    DELETE: DonationHandler.delete,
+                    GET: get(DonationHandler.get),
+                    DELETE: del(DonationHandler.delete),
                 },
                 start: {
-                    POST: DonationHandler.start,
+                    POST: post(DonationHandler.start),
                 },
                 finalize: {
-                    POST: DonationHandler.finalize,
+                    POST: post(DonationHandler.finalize),
                 },
             }
         }

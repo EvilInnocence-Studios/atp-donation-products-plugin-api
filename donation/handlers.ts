@@ -1,10 +1,10 @@
-import { HandlerArgs } from "@core/express/types";
-import { CheckPermissions } from "@uac/permission/util";
+import { HandlerArgs } from "../../core/express/types";
+import { CheckPermissions } from "../../uac/permission/util";
 import { Query } from "pg";
 import { IDonation, NewDonation } from "src/donation-products-plugin-shared/donation/types";
 import { pipe, pipeTo } from "ts-functional";
 import { Donation } from "./service";
-import { getBody, getParam, getParams } from "@core/express/extractors";
+import { getBody, getBodyParam, getParam, getParams } from "../../core/express/extractors";
 
 class DonationHandlerClass {
     @CheckPermissions("donation.view")
@@ -28,11 +28,11 @@ class DonationHandlerClass {
 
     @CheckPermissions("donation.update")
     public finalize (...args: HandlerArgs<Query>):Promise<IDonation> {
-        return pipeTo(Donation.finalize, getParam("transactionId"))(args);
+        return pipeTo(Donation.finalize, getBodyParam("transactionId"))(args);
     }
 
     @CheckPermissions("donation.delete")
-    public delete (...args: HandlerArgs<Query>):Promise<IDonation> {
+    public delete (...args: HandlerArgs<undefined>):Promise<null> {
         return pipeTo(Donation.remove, getParam("donationId"))(args);
     }
 }
