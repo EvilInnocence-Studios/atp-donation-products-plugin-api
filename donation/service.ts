@@ -27,6 +27,7 @@ export const Donation = {
             ...donation,
             userId,
             status: "pending",
+            orderId: null,
             transactionId: payPalResult?.jsonResponse?.id || "",
             createdAt: new Date().toISOString(),
         });
@@ -43,10 +44,11 @@ export const Donation = {
         if(donation.transactionId && donation.status === "pending") {
             // Finalize the order
             const payPalResult = await captureOrder(donation.transactionId);
-            const updated = await Donation.update(donation.id, { status: "completed" });
 
             // Create the store order
             const order = await Order.createFromProducts([donation.productId], donation.userId);
+
+            const updated = await Donation.update(donation.id, { status: "completed", orderId: order.id });
 
             // Send confirmation email
             const user = await User.loadById(donation.userId);

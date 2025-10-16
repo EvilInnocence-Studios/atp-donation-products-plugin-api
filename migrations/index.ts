@@ -30,5 +30,14 @@ export const migrations:IMigration[] = [{
             { name: "donation.update", description: "Update donations" },
             { name: "donation.delete", description: "Delete donations" },
         ]);
+        await insertRolePermissions(db, [
+            {roleName: "SuperUser", permissionName: "donation.view"},
+            {roleName: "SuperUser", permissionName: "donation.create"},
+            {roleName: "SuperUser", permissionName: "donation.update"},
+            {roleName: "SuperUser", permissionName: "donation.delete"},
+            {roleName: "Customer", permissionName: "donation.view"},
+            {roleName: "Customer", permissionName: "donation.create"},
+            {roleName: "Customer", permissionName: "donation.update"},
+        ]);
     },
 }];
