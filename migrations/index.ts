@@ -14,12 +14,14 @@ export const migrations:IMigration[] = [{
         .dropTableIfExists("donations")
         .alterTable("products", (t) => {
             t.dropColumn("isDonation");
+            t.dropColumn("isSetYourOwnAmount");
         }),
 
     up: () => db.schema
         .createTable("donations", donationsTable)
         .alterTable("products", (t) => {
             t.boolean("isDonation").notNullable().defaultTo(false);
+            t.boolean("isSetYourOwnAmount").notNullable().defaultTo(false);
         }),
         
     initData: async () => {
