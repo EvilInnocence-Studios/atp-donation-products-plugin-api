@@ -5,8 +5,8 @@ import { donationsTable } from "./tables";
 
 const db = database();
 
-export const migrations:IMigration[] = [{
-    name: "init-donation-products-plugin",
+export const init: IMigration = {
+    name: "init",
     module: "donation-products-plugin",
     description: "Initialize the donation products plugin",
     order: 0,
@@ -42,4 +42,7 @@ export const migrations:IMigration[] = [{
             {roleName: "Customer", permissionName: "donation.update"},
         ]);
     },
-}];
+};
+
+export const migrations:IMigration[] = [init];
+

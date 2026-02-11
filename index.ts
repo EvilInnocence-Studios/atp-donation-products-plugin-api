@@ -1,1 +1,6 @@
+import { init } from "./migrations";
+
 export {apiConfig} from "./endpoints";
+
+export const migrations = [init];
+export const setupMigrations = [init];
