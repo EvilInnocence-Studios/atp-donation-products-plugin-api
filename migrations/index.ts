@@ -9,6 +9,7 @@ export const init: IMigration = {
     name: "init",
     module: "donation-products-plugin",
     description: "Initialize the donation products plugin",
+    version: "1.0.0",
     order: 3,
     down: () => db.schema
         .dropTableIfExists("donations")
@@ -43,6 +44,4 @@ export const init: IMigration = {
         ]);
     },
 };
-
-export const migrations:IMigration[] = [init];
 
