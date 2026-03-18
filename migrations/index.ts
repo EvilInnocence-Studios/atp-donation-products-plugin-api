@@ -10,7 +10,7 @@ export const init: IMigration = {
     module: "donation-products-plugin",
     description: "Initialize the donation products plugin",
     version: "1.0.0",
-    order: 3,
+    order: 4,
     down: () => db.schema
         .dropTableIfExists("donations")
         .alterTable("products", (t) => {
