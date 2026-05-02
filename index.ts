@@ -1,4 +1,4 @@
-import { init } from "./migrations";
+import { init } from "../donation-products-plugin/migrations";
 
 export { apiConfig } from "./endpoints";
 
