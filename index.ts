@@ -6,5 +6,11 @@ export { apiConfig } from "./endpoints";
 export const migrations = [init];
 export const setupMigrations = [init];
 
-FieldRegistry.register("donations", ["amount", "productId", "orderId", "transactionId", "status", "note"]);
-FieldRegistry.register("products", ["isDonation", "isSetYourOwnAmount"]);
+FieldRegistry.register("donations", {
+    create: ["userId", "amount", "productId", "orderId", "createdAt","transactionId", "status", "note"],
+    update: ["transactionId", "status", "note"],
+});
+FieldRegistry.register("products", {
+    create: ["isDonation", "isSetYourOwnAmount"],
+    update: ["isDonation", "isSetYourOwnAmount"],
+);
