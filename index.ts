@@ -1,4 +1,4 @@
-import { FieldRegistry } from "@core/express/util";
+import { FieldRegistry } from "../core/express/util";
 import { init } from "../donation-products-plugin/migrations";
 
 export { apiConfig } from "./endpoints";
@@ -13,4 +13,4 @@ FieldRegistry.register("donations", {
 FieldRegistry.register("products", {
     create: ["isDonation", "isSetYourOwnAmount"],
     update: ["isDonation", "isSetYourOwnAmount"],
-);
+});
