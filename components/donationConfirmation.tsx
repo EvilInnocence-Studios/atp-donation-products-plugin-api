@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAppConfig } from '../../../config';
+import { getAppConfig } from '../../core/config';
 import { IDonation } from "../../donation-products-plugin-shared/donation/types";
 import { SafeUser } from '../../uac-shared/user/types';
 import { IOrder } from '../../store-shared/order/types';
